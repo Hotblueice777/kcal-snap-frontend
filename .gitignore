@@ -1,0 +1,30 @@
+# streamlit_client/.gitignore
+
+# Environment & Virtual Envs
+.env
+.venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+
+# IDE & Editor
+.vscode/
+.idea/
+*.log
+
+
+# OS / System Files
+.DS_Store
+Thumbs.db
+
+
+# Local Audio / Temp Files
+*.wav
+*.mp3
+
+
+# Local Certificates
+your_cert.pem
+your_key.pem
