@@ -7,7 +7,6 @@ from PIL import Image, ExifTags
 
 def render(): 
     BACKEND = os.getenv("BACKEND_URL")
-    st.write("Backend connected to:", BACKEND)   # test------
     
     st.markdown("""
         <h1 style='margin-bottom:0; color:#766A8F'>KcalSnap</h1>

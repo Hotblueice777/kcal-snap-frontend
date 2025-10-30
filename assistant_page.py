@@ -14,8 +14,7 @@ def render():
 
     # Azure speach
     with col1:
-        # 使用 Streamlit 的音频录制组件代替 sounddevice
-        audio_data = st.audio_input("🎤 Record or upload your voice")  # 🔧 新增：Streamlit 1.36+ 内置录音
+        audio_data = st.audio_input("🎤 Record or upload your voice")  # Streamlit 1.36+ 
 
         if audio_data is not None:
             st.info("Processing your recording...")
