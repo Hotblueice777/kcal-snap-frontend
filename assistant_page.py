@@ -2,9 +2,8 @@
 
 import os
 import streamlit as st
-import requests, base64, numpy as np
-import sounddevice as sd
-from scipy.io.wavfile import write
+import requests, base64
+from io import BytesIO  
 import time
 
 def render():
@@ -15,20 +14,14 @@ def render():
 
     # Azure speach
     with col1:
-        if st.button("🎤 Speak Now"):
-            import sounddevice as sd
-            from scipy.io.wavfile import write
+        # 使用 Streamlit 的音频录制组件代替 sounddevice
+        audio_data = st.audio_input("🎤 Record or upload your voice")  # 🔧 新增：Streamlit 1.36+ 内置录音
 
-            fs = 44100
-            seconds = 5
-            st.info("Recording for 10 seconds...")
-            myrecording = sd.rec(int(seconds * fs), samplerate=fs, channels=2)
-            sd.wait()
-            write("input.wav", fs, myrecording)
-            st.success("Recording complete!")
+        if audio_data is not None:
+            st.info("Processing your recording...")
 
             # Step1: Speech → Text
-            files = {"audio_file": open("input.wav", "rb")}
+            files = {"audio_file": audio_data}
             r = requests.post(f"{BACKEND}/assistant/api/speech_to_text", files=files)
             text = r.json().get("text", "")
             if not text:
